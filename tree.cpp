@@ -115,6 +115,26 @@ void del(Node *e, int v)
     }
 }
 
+Node* min(Node* root)
+{
+    if(root == NULL) return NULL;
+
+    if(root->l != NULL){
+       root = min(root->l);
+    }
+    return root;
+}
+
+Node* max(Node* root)
+{
+    if(root == NULL) return NULL;
+
+    if(root->r != NULL){
+       root = max(root->r);
+    }
+    return root;
+}
+
 int main(int, char**)
 {
     using namespace std;
@@ -132,6 +152,12 @@ int main(int, char**)
     del(head,2);
     print(head);
     printf("\n");
+    Node* rez;
+    rez = min(head);
+    printf("min %d \n",rez->x);
+    rez = max(head);
+    printf("max %d \n",rez->x);
+    
     return 0;
 }
 

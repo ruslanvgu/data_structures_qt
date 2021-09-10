@@ -62,7 +62,7 @@ void del(Node *e, int v)
 
         if(!e) return;
 
-        if(e->l == NULL && e->r == NULL)//dont have children
+        if(e->l == NULL && e->r == NULL) /* dont have children  */
         {
             if(prev->x > e->x)
                 prev->l = NULL;
@@ -71,7 +71,7 @@ void del(Node *e, int v)
             free(e);
             e = NULL;
 
-        }else if(e->l == NULL )//have 1 child right
+        }else if(e->l == NULL )         /* have 1 child right */
         {
             Node *tmp = e->r;
             free(e);
@@ -80,7 +80,7 @@ void del(Node *e, int v)
             else
                 prev->r = tmp;
 
-        }else if( e->r == NULL)//have 1 child left
+        }else if( e->r == NULL)         /* have 1 child left */
         {
             Node *tmp = e->l;
             free(e);
@@ -89,19 +89,19 @@ void del(Node *e, int v)
             else
                 prev->r = tmp;
         }
-        else//have 2 child
+        else                            /* have 2 child */
         {
-            //find min elem right branch
-            Node * min = e->r;
+            /* find min elem right branch */
+            Node * min = e->r;          /* move right branch subtree */
             Node *prevMin = NULL;
             while( min->l != NULL){
                 prevMin = min;
                 min = min->l;
             }
 
-            prevMin->l = min->r;
+            prevMin->l = min->r;        /* change ptr previos min node */
 
-            min->l = e->l;
+            min->l = e->l;              
             min->r = e->r;
 
             free(e);

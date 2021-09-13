@@ -34,15 +34,35 @@ void print(Node *elem)
     }
 }
 
-Node* find_node(Node* e, int v)
+//use if tree very broad
+Node* find_node_depth(Node* e, int v)
 {
     if(e == NULL) return NULL;
     else {
         if(e->x == v) return e;
         else if( e->x > v)
-            find_node(e->l,v);
+            find_node_depth(e->l,v);
         else
-            find_node(e->r,v);
+            find_node_depth(e->r,v);
+    }
+}
+
+//use if tree very depth
+Node* find_node_broad(Node* e, int v)
+{
+    if(e == NULL) return NULL;
+    else {
+        std::queue<Node*> st;
+        st.push(e);
+        while(!st.empty()){
+            if(st.front()->x == v) return st.front();
+            else {
+                if(st.front()->l != NULL ) st.push(st.front()->l);
+                if(st.front()->r != NULL ) st.push(st.front()->r);
+                st.pop();
+            }
+
+        }
     }
 }
 

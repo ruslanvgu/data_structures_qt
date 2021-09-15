@@ -155,6 +155,35 @@ Node* max(Node* root)
     return root;
 }
 
+int layers(Node* root)
+{
+    int  count =0;
+    if(root == NULL)     return 0;
+    else
+    {
+        std::queue<Node*> parent;
+        parent.push(root);
+        while(!parent.empty())
+        {
+            std::queue<Node*> children;
+            count++;
+            while(!parent.empty()){
+              if ( parent.front()->l != NULL)
+                  children.push(parent.front()->l);
+              if ( parent.front()->r != NULL)
+                  children.push(parent.front()->r);
+              parent.pop();
+            }
+
+            while(!children.empty()){
+                parent.push(children.front());
+                children.pop();
+           }
+        }
+    }
+    return count;
+}
+
 int main(int, char**)
 {
     using namespace std;
